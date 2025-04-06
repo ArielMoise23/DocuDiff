@@ -1,0 +1,13 @@
+# Root .gitignore
+
+# Ignore Node dependencies
+client/node_modules/
+server/node_modules/
+
+# OS and editor files
+.DS_Store
+.env
+*.log
+
+# Optional: build artifacts
+client/build/
