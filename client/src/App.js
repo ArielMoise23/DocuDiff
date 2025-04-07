@@ -5,27 +5,25 @@ import { Slate, Editable, withReact } from 'slate-react';
 const initialValue = [
   {
     type: 'paragraph',
-    children: [{ text: 'Type here...' }],
+    children: [{ text: 'A line of text in a paragraph.' }],
   },
-];
+]
 
 function App() {
-  const editor = useMemo(() => withReact(createEditor()), []);
-  const [value, setValue] = useState(initialValue);
+  const [editor] = useState(() => withReact(createEditor()))
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h1>Simple Slate Editor</h1>
-      {/* <Slate editor={editor} value={value} onChange={setValue}>
+    <div>
+      <Slate editor={editor} initialValue={initialValue}>
         <Editable
-          placeholder="Write something..."
-          style={{
-            border: '1px solid #ccc',
-            padding: '1rem',
-            minHeight: '200px',
+          onKeyDown={event => {
+            if (event.key == '&') {
+              event.preventDefault()
+              editor.insertText("and")
+            }
           }}
         />
-      </Slate> */}
+      </Slate>
     </div>
   );
 }
